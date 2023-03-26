@@ -1,0 +1,77 @@
+body{
+    width: 100%;
+    background-color: rgb(102, 99, 136);
+}
+
+.corpo-calculadora{
+    margin: 36px auto;
+    width: 350px;
+    height: 500px;
+    background-color: #0A061F;
+    border-radius: 50px;
+    box-shadow: inset white 1px 1px 0.5em;
+}
+
+.container-display{
+    display: flex;
+    flex-direction: column;
+    padding: 27px 0;
+    align-items: center;
+    border-radius: 50px;
+    box-shadow: inset white 1px 1px 0.3em 2px;
+}
+
+.divisao{
+    height: 0.1px;
+    width: 200px;
+    margin: 1px;
+    box-shadow: white 1px 1px 1em 0.9em;
+    background-color: wheat;
+}
+
+.display-operacao{
+    z-index: 1;
+    color: white;
+    text-align: end;
+    font-size: 50px;
+    margin: 0.3px;
+    padding: 0 10px;
+    width: 280px;
+    height: 70px;
+    background-color: #0A061F;
+    border: none; 
+    border-radius: 20px;
+}
+
+#displayResultado{
+    color: rgb(117, 109, 109);
+}
+
+.teclas{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 7px 18px 0 18px;
+
+}
+
+.buttons{
+    color: white;
+    font-weight: 600;
+    margin: 3px auto;
+    height: 50px;
+    width: 70px;
+    border-radius: 30%;
+    background: linear-gradient(130deg, #1b143d, #080322);
+    box-shadow:  -3px -1px 20px #050211,
+                3px 1px 20px #0e0930;
+    border: none;
+    transition: 0.1s; 
+    
+}
+
+.buttons:active{
+    color: rgb(102, 95, 95);
+    background: #0a061f;
+    box-shadow: inset 19px 19px 31px #07031d,
+            inset -19px -19px 31px #0f092e;
+}
