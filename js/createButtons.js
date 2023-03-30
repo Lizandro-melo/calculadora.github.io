@@ -3,11 +3,11 @@
 
 //Criei uma array para alimentar os botões com os caracteres
 const caracteres = [
-    "AC", "( )", "%", "/", 
+    "AC", "⌫", "( )", "/", 
     7, 8, 9, "X", 4, 
     5, 6, "-", 1, 
     2, 3, "+", 0,
-    ".", "C", "="
+    ".", "f+", "="
 ]
 
 //criei algumas constantes para guardar os elementos HTML

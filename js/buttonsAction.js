@@ -15,29 +15,35 @@ for(let i = 0; i < botoesClass.length; i++){
 
 //Função capaz de verificar os botões e deixar funcional alguns botões
 function verificarBotao(botao, displayEntrada, displaySaida ){
-
-    if (botao.textContent == "C"){
-        let menosValor = displayEntrada.value.substring(0, displayEntrada.value.length -1);
-        displayEntrada.value = menosValor;
-        displaySaida.value = menosValor;
-    } else if(botao.textContent == "X"){
-        displayEntrada.value += "*";
-    } else if(botao.textContent == "AC"){
-        displayEntrada.value = "";
-        displaySaida.value = "";
-    } else if(botao.textContent == "="){
-        displayEntrada.value = displaySaida.value
-    } else if(botao.textContent == "( )"){
-        if(displayEntrada.value.endsWith("(") || /\d$/.test(displayCalcular.value)){
-            displayEntrada.value += ')'
-        }else{
-            displayEntrada.value += "("
-            displayEntrada.value = displayEntrada.value
-        }
-    }else if(botao.textContent == "="){
-        displayEntrada.value = displaySaida.value;
-        displaySaida.value = ""
-    }else{
-        displayEntrada.value += botao.textContent
+    switch (botao.textContent) {
+        case "⌫":
+            let menosValor = displayEntrada.value.substring(0, displayEntrada.value.length -1);
+            displayEntrada.value = menosValor;
+            displaySaida.value = menosValor;
+            break;
+        case "AC":
+            displayEntrada.value = ""
+            displaySaida.value = ""
+            break
+        case "X":
+            displayEntrada.value += "*"
+            break
+        case "( )":
+            if(displayEntrada.value.endsWith("(") || /\d$/.test(displayCalcular.value)){
+                displayEntrada.value += ')'
+            }else{
+                displayEntrada.value += "("
+                displayEntrada.value = displayEntrada.value
+            }
+            break
+        case "=":
+            displayEntrada.value = displaySaida.value;
+            displaySaida.value = ""
+            break
+        case "f+":
+            break
+        default:
+            displayEntrada.value += botao.textContent
+            break;
     }
-}   
+}
