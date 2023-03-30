@@ -8,9 +8,9 @@ const botoesClass = document.querySelectorAll(".buttons")
 
 //Laço que mostra cada carácter clicado no display de cima
 for(let i = 0; i < botoesClass.length; i++){
-    /*botoesClass[i].addEventListener("click", function(){
+    botoesClass[i].addEventListener("click", function(){
         verificarBotao(botoesClass[i], displayCalcular,displayResultado)
-    })*/
+    })
 
     botoesClass[i].addEventListener("touchstart", function(){
         verificarBotao(botoesClass[i], displayCalcular,displayResultado)
