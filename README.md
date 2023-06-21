@@ -1,16 +1,8 @@
 # Calculadora-sense
 
-## Objetivo
+## Atualização
 
-### Essa calculadora está sendo desenvolvida por mim com o objetivo de praticar e aprender javascript
-
-### Meu objetivo é criar uma calculadora e aplicar algumas técnicas e ferramentas de acessibilidade
-
-## Explicação
-
-### Alguns comandos podem não funcionar corretamente, eu ainda estou desenvolvendo e falta muita coisa.
-
-### Mas por enquanto é isto.
+Otimizei o codigo, utilizando um objeto simulando a memoria da calculadora.
 
 ## Redes
 [Linkedin](linkedin.com/in/josé-lizandro-2a85b1234)

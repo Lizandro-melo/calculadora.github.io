@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 
-<html>
-    <head>
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/main.css">
-        <title>Calculadora digital</title>
-    </head>
-    <body>
-        <div class="corpo-calculadora">
-            <div class="display">
-                <div class="container-display">
-                    <input id="displayCalcular" class="display-operacao" type="text" disabled value="">
-                    <div class="divisao"></div>
-                    <input id="displayResultado" class="display-operacao" type="text" disabled value="">
-                </div>
-                    <div class="corpo-teclas">
-                        <div class="teclas">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src="js/createButtons.js"></script>
-        <script src="js/buttonsAction.js"></script>
-        <script src="js/displayAction.js"></script>
-    </body>
+<html lang="pt-br">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Calculadora digital</title>
+</head>
+
+<body>
+    <main>
+        <section class="corpo-calculadora">
+            <section class="container-display">
+                <input type="text" class="calculo" id="calculo" value="0" disabled>
+
+                <input type="text" class="resultado" id="resultado" value="0" disabled >
+
+            </section>
+            <section class="corpo-teclas">
+                <section class="teclas">
+
+                </section>
+            </section>
+        </section>
+    </main>
+    <script src="js/createButtons.js"></script>
+    <script src="js/buttonsAction.js"></script>
+    <script src="js/themes.js"></script>
+</body>
+
 </html>

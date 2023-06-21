@@ -1,53 +1,110 @@
-//Arquivo responsável por dar função a cada botão da calculadora
+const operations = ["/", "X", "-", "+", "="];
 
+class Memory {
 
-//Constante que guarda os botões
-const botoesClass = document.querySelectorAll(".buttons")
+    _buffer = [0.0, 0.0];
+    _bufferIndex = 0;
+    operation;
+    _value = "0";
+    _wipeValue = false;
 
+    applyCommand(command) {
 
-
-//Laço que mostra cada carácter clicado no display de cima
-for(let i = 0; i < botoesClass.length; i++){
-    botoesClass[i].addEventListener("click", function(){
-        verificarBotao(botoesClass[i], displayCalcular,displayResultado)
-    })
-
-    botoesClass[i].addEventListener("touchstart", function(){
-        verificarBotao(botoesClass[i], displayCalcular,displayResultado)
-    })
-}
-
-//Função capaz de verificar os botões e deixar funcional alguns botões
-function verificarBotao(botao, displayEntrada, displaySaida ){
-    switch (botao.textContent) {
-        case "⌫":
-            let menosValor = displayEntrada.value.substring(0, displayEntrada.value.length -1);
-            displayEntrada.value = menosValor;
-            displaySaida.value = menosValor;
-            break;
-        case "AC":
-            displayEntrada.value = ""
-            displaySaida.value = ""
-            break
-        case "X":
-            displayEntrada.value += "*"
-            break
-        case "( )":
-            if(displayEntrada.value.endsWith("(") || /\d$/.test(displayCalcular.value)){
-                displayEntrada.value += ')'
-            }else{
-                displayEntrada.value += "("
-                displayEntrada.value = displayEntrada.value
+        for (let i = 0; i < operations.length; i++) {
+            if (operations[i] == command) {
+                this.setOperation(command)
+                return
             }
-            break
-        case "=":
-            displayEntrada.value = displaySaida.value;
-            displaySaida.value = ""
-            break
-        case "f+":
-            break
-        default:
-            displayEntrada.value += botao.textContent
-            break;
+        }
+
+        if (command == "AC") {
+            this.allClear();
+        } else if (command == "←") {
+           return;
+        } else {
+            this.addDigit(command);
+
+        }
+    }
+
+    setOperation(newOperation) {
+        let isEqualSign = newOperation == "=";
+        if (this._bufferIndex == 0) {
+            if (!isEqualSign) {
+                this.operation = newOperation;
+                this._bufferIndex = 1;
+                this._wipeValue = true;
+            }
+        } else {
+            this._buffer[0] = this.calculate()
+            this._buffer[1] = 0.0;
+            this.operation = isEqualSign ? null : newOperation;
+            this._bufferIndex = isEqualSign ? 0 : 1;
+            this._value = isEqualSign ? this._buffer[0] : 0
+        }
+        this._wipeValue = true;
+    }
+
+    addDigit(digito) {
+        let isDot = digito == ".";
+        let wipeValue = (this._value == "0" && !isDot) || this._wipeValue;
+
+        if (isDot && this._value.indexOf(".") > -1) {
+            return;
+        }
+
+        let emptyValue = isDot ? "0" : "";
+        let currentValue = wipeValue ? emptyValue : this._value;
+        this._value = currentValue + digito;
+        this._wipeValue = false;
+
+        this._buffer[this._bufferIndex] = parseFloat(this._value) ?? 0;
+    }
+
+    allClear() {
+        this._value = "0";
+        this._buffer[0] = 0;
+        this._buffer[1] = 0;
+        this._bufferIndex = 0;
+        this.operation = null;
+        this._wipeValue = false;
+    }
+
+    calculate() {
+        switch (this.operation) {
+            case "/": return this._buffer[0] / this._buffer[1]
+            case "X": return this._buffer[0] * this._buffer[1]
+            case "-": return this._buffer[0] - this._buffer[1]
+            case "+": return this._buffer[0] + this._buffer[1]
+            default: return this._buffer[0];
+        }
+    }
+
+    getValue() {
+        return this._value;
+    }
+
+    getbuffer(index) {
+        return this._buffer[index];
     }
 }
+
+const memory = new Memory(0, 0);
+
+const buttons = document.querySelectorAll(".buttons");
+const calculo = document.querySelector("#calculo");
+const resultado = document.querySelector("#resultado");
+
+calculo.addEventListener("input", () => {
+    calculoDisplay = calculo.value;
+    calculoDisplay = calculoDisplay.replace(/\D/g, "");
+    calculo.value = calculoDisplay;
+})
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        memory.applyCommand(button.textContent)
+        calculo.value = memory.getValue()
+        resultado.value = memory.getbuffer(0)
+    });
+})
